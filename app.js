@@ -1,20 +1,37 @@
-const express = require('express');
-require('dotenv').config()
+require("dotenv").config();
+
+const mongoose = require("mongoose");
+const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
-const uri = process.env.MONGO_URI;
-console.clear();
-mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true}).then(()=>
-    console.log("connected sucessful")
-).catch((err)=>console.log(err))
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
+const authRoutes = require('./routes/auth');
 
-const port = process.env.PORT||8000;
+//DB Connection
+mongoose
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
+  .then(() => {
+    console.log("DB CONNECTED");
+  });
 
-app.listen(port,()=>
-{
-    console.log("app is running at "+port);
-})
+//Middlewares
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors());
 
+//My Routes
+app.use("/api", authRoutes);
 
-mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true});
+//PORT
+const port = process.env.PORT || 8000;
+
+//Starting a server
+app.listen(port, () => {
+  console.log(`app is running at ${port}`);
+});
