@@ -11,7 +11,7 @@ const authRoutes = require('./routes/auth');
 
 //DB Connection
 mongoose
-  .connect(process.env.DATABASE, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -29,7 +29,7 @@ app.use(cors());
 app.use("/api", authRoutes);
 
 //PORT
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8005;
 
 //Starting a server
 app.listen(port, () => {

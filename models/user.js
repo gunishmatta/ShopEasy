@@ -53,7 +53,7 @@ this.securePassword = this.securepassword(password)
   return this._password;
 })
 
-userSchema.method = {
+userSchema.methods = {
 authenticate : function(plainpassword)
 {
   return this.securepassword(plainpassword) === this.securePassword; 
