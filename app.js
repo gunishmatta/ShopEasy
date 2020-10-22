@@ -29,7 +29,7 @@ app.use(cors());
 app.use("/api", authRoutes);
 
 //PORT
-const port = process.env.PORT || 8005;
+const port = process.env.PORT || 8002;
 
 //Starting a server
 app.listen(port, () => {

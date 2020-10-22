@@ -32,9 +32,6 @@ exports.signup = (req, res) =>  {
   });
 
 }
-exports.signout = (req, res) => {
-  res.json({ message: "User signed out" });
-}
 
 exports.signin = (req,res) =>
 {
@@ -51,11 +48,11 @@ exports.signin = (req,res) =>
 }
 
 User.findOne({email},(err,user)=>{
-if(err)
+if(err ||(!user))
 {
 return res.status(400).json({
   error : "User does not exists"
-})
+});
 }
 if(!user.authenticate(password))
 {
@@ -64,7 +61,7 @@ return res.status(400).json({
 })
 }
 //created token
-const token = jwt.sign({_id: user._id},process.env.AUTHSECRET)
+const token = jwt.sign({_id: user._id},"abcd")
 
 //putting token to cookie
 res.cookie("token",token,{expire: new Date()+100})
@@ -78,3 +75,10 @@ return res.json({
 
 })
 }
+
+
+exports.signout = (req, res) => {
+  res.clearCookie("token");
+    res.json({ message: "User signed out" });
+  }
+  
