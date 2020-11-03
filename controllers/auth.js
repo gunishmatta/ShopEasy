@@ -1,3 +1,6 @@
+require("dotenv").config();
+
+
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const { validationResult } = require('express-validator');
@@ -82,3 +85,10 @@ exports.signout = (req, res) => {
     res.json({ message: "User signed out" });
   }
   
+//protected routes
+exports.isSignedIn = expressJwt(
+  {
+secret : "Gunish",
+userProperty : "auth"
+  }
+)
