@@ -11,4 +11,7 @@ router.get("/user/:userId", isSignedIn, isAuthenticated, getUser);
 //update request
 router.put("/user/:userId", isSignedIn, isAuthenticated, updateUser);
 
+//
+router.put("orders/user/:userId", isSignedIn, isAuthenticated, userPurchaseList);
+
 module.exports = router;
