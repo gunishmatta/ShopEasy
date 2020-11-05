@@ -1,33 +1,32 @@
 var express = require("express");
-const { check } = require('express-validator');
 var router = express.Router();
-const {signout,signup,isSignedIn} = require('../controllers/auth');
+const { signout, signup, signin, isSignedIn } = require("../controllers/auth");
+const Joi = require('@hapi/joi');
+const validate = require('express-joi-validate');
 
-router.post('/signup',[check("name").isLength({min:3}).withMessage('Name must be at least 3 chars long'),
-
-check("email").isEmail().withMessage(""),
-
-check("securePassword").isLength({ min: 5 }).withMessage('must be at least 5 chars long').matches(/\d/).withMessage('must contain a number')
-
-],signup);
-
-router.post('/sigin',
-[
-check("email").isEmail().withMessage(""),
-
-check("securePassword").isLength({ min: 5 }).withMessage('must be at least 5 chars long').matches(/\d/).withMessage('must contain a number')
-
-],signup);
-
-
-router.get("/signout",signout);
-
-router.get("/testroute",isSignedIn,
-(req,res)=>
+const userValidationSchema = 
 {
-res.send("A protected Route")
-})
+  params:
+  {
+    name: Joi.string().alphanum().min(3).max(20).required,
+    password : Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+  
+    email: Joi.string()
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+  
+  }
+}
 
+router.post(
+  "/signup", validate(userValidationSchema),
+  signup
+);
 
+router.post(
+  "/signin",
+  signin
+);
+
+router.get("/signout", signout);
 
 module.exports = router;
