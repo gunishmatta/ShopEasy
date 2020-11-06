@@ -51,21 +51,36 @@ exports.getAllCategory = (req, res) => {
 }
 
 
-exports.updateCategory =(req,res)=>
-{
-const category = req.category;
-category.name = req.body.name;
-category.save((err,updatedCategory)=>{
-    if(err)
-    {
-        return res.status(400).json(
-            {
-                error:"Error updating category"
-            }
-        )
-    }
+exports.updateCategory = (req, res) => {
+    const category = req.category;
+    category.name = req.body.name;
+    category.save((err, updatedCategory) => {
+        if (err) {
+            return res.status(400).json(
+                {
+                    error: "Error updating category"
+                }
+            )
+        }
 
-    res.json(updatedCategory);
-})
+        res.json(updatedCategory);
+    })
 
+}
+
+exports.removeCategory = (req, res) => {
+    const category = req.category;
+
+    category.remove((err, category) => {
+        if (err) {
+            return res.status.json({
+                error: "Error while deleting category"
+            })
+        }
+
+        res.json({
+            message: `Successfully deleted ${category}`
+        })
+
+    })
 }
