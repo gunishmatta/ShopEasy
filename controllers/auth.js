@@ -1,9 +1,18 @@
 const User = require("../models/user");
-const { check, validationResult } = require("express-validator");
+const { body,check, validationResult } = require("express-validator");
 var jwt = require("jsonwebtoken");
 var expressJwt = require("express-jwt");
 
 exports.signup = (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      error: errors.array()[0].msg
+    });
+  }
+
+
 
   const user = new User(req.body);
   user.save((err, user) => {
@@ -25,8 +34,16 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+  const errors = validationResult(req);
   const { email, password } = req.body;
-  User.findOne({ email }, (err, user) => {
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      error: errors.array()[0].msg
+    });
+  }
+
+   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
         error: "USER email does not exists"
