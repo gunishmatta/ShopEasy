@@ -3,17 +3,17 @@ const { ObjectId } = mongoose.Schema;
 
 const ProductCartSchema = new mongoose.Schema(
     {
-        product :
+        product:
         {
-            type : ObjectId,
-            ref : "Product"
+            type: ObjectId,
+            ref: "Product"
         },
-        name : String,
-        count : Number,
-        price : Number,
+        name: String,
+        count: Number,
+        price: Number,
     }
 )
-module.exports = mongoose.model("ProductCart",ProductCartSchema);
+module.exports = mongoose.model("ProductCart", ProductCartSchema);
 
 const orderSchema = new mongoose.Schema(
     {
@@ -23,6 +23,12 @@ const orderSchema = new mongoose.Schema(
         {
             type: Number
         },
+        status: {
+            type: String,
+            default: "Received",
+            enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Received"]
+        }
+        ,
         address: {
             type: String
         },
