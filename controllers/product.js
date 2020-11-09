@@ -154,6 +154,23 @@ exports.getAllProducts = (req, res) => {
 };
 
 
+
+exports.getAllUniqueCategories = (req,res)=>
+{
+  Product.distinct("category",{},(err,distictCategory)=>
+  {
+if(err){
+  return res.status(400).json(
+    {
+      error :"Error getting all categories"
+    }
+  )}
+
+res.json(distictCategory);
+
+})}
+
+
 exports.updateStock = (req,res,next) =>
 {
 let myOperations = req.body.order.products.map(product=>
@@ -185,3 +202,4 @@ let myOperations = req.body.order.products.map(product=>
 
 
 }
+
