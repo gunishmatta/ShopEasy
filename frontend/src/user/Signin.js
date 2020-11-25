@@ -40,10 +40,10 @@ const Signin = () => {
     }
 
     const performRedirect = () => {
-    
-    //TODO:  Redirect work to be completed
+
+        //TODO:  Redirect work to be completed
         if (didRedirect) {
-            if (user && user.role == 1) {
+            if (user && user.role === 1) {
                 return <p>Redirect to admin</p>
             }
         }
