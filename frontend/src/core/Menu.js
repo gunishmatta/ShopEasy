@@ -27,20 +27,28 @@ const Menu = ({ history }) => (
      </Link>
             </li>
 
+            {isAuthenticated() && isAuthenticated().user.role === 0 && (
 
-
-            <li className="nav-items">
-                <Link style={currentTab(history, '/user/dashboard')} className="nav-link" to="/user/dashboard">
-                    Dashboard
+                <li className="nav-items">
+                    <Link style={currentTab(history, '/user/dashboard')} className="nav-link" to="/user/dashboard">
+                        Dashboard
      </Link>
-            </li>
+                </li>
 
 
-            <li className="nav-items">
-                <Link style={currentTab(history, '/admin/dashboard')} className="nav-link" to="/admin/dashboard">
-                    A. Dashboard
+            )}
+            {isAuthenticated() && isAuthenticated().user.role === 1 && (
+
+
+                <li className="nav-items">
+                    <Link style={currentTab(history, '/admin/dashboard')} className="nav-link" to="/admin/dashboard">
+                        A. Dashboard
      </Link>
-            </li>
+                </li>
+
+
+            )
+            }
 
             {!isAuthenticated() && (
                 <Fragment>
