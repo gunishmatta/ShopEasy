@@ -17,8 +17,8 @@ export default function Routes()
   <Route path='/' exact component={Home} />
   <Route path='/signup' exact component={Signup} />
   <Route path='/signin' exact component={Signin} />
-  <PrivateRoute path='/user/dashboard' exact component={UserDashBoard} />
-  <AdmineRoute path='/admin/dashboard' exact component={AdminDashboard} />
+  <PrivateRoutes path='/user/dashboard' exact component={UserDashBoard} />
+  <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
   
     </Switch>
     </BrowserRouter>
