@@ -7,6 +7,7 @@ import Signup from './user/Signup';
 import PrivateRoutes from './auth/helper/PrivateRoutes'
 import UserDashBoard from './user/UserDashBoard';
 import AdminDashboard from './user/AdminDashBoard';
+import AddCategory from './admin/AddCategory';
 
 
 export default function Routes()
@@ -19,7 +20,10 @@ export default function Routes()
   <Route path='/signin' exact component={Signin} />
   <PrivateRoutes path='/user/dashboard' exact component={UserDashBoard} />
   <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
-  
+    
+  <AdminRoute path='/admin/create/category' exact component={AddCategory} />
+
+
     </Switch>
     </BrowserRouter>
   )
