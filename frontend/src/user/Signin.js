@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import Base from '../core/Base';
-import { signin, authenticate, isAuthenticated } from '../auth/helper/index'
+import Base from "../core/Base";
+import { signin, authenticate, isAuthenticated } from "../auth/helper/index";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -10,35 +9,32 @@ const Signin = () => {
     password: "",
     error: "",
     loading: false,
-    didRedirect: false
+    didRedirect: false,
   });
 
-  
-
   const { email, password, error, loading, didRedirect } = values;
-  const { user } = isAuthenticated();
-
-  const handleChange = name => event => {
+ 
+  const { user } = isAuthenticated()
+  
+  
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
-      .then(data => {
+      .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error, loading: false });
         } else {
           authenticate(data, () => {
-            setValues({
-              ...values,
-              didRedirect: true
-            });
+            setValues({ ...values, password: "", didRedirect: true });
           });
         }
       })
-      .catch(console.log("signin request failed"));
+      .catch((error) => console.log(error));
   };
 
   const performRedirect = () => {

@@ -1,4 +1,3 @@
-import { response } from "express";
 import { backendAPI } from "../../backend";
 
 
@@ -71,7 +70,7 @@ export const deleteProduct = (userId, token, productId) => {
 
 // get one product
 
-export const getProduct = () =>
+export const getProduct = (productId) =>
 {
     return fetch(`${backendAPI}/product/${productId}`,{
         method:"GET"

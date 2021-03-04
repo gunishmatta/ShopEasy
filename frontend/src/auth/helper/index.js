@@ -17,17 +17,19 @@ export const signup = user => {
 
 export const signin = user => {
     return fetch(`${backendAPI}/signin`, {
-        method: ' POST',
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    }).then(response => {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(response => {
         return response.json();
-    }).catch(err => console.log(err))
-}
-
+      })
+      .catch(err => console.log(err));
+  };
+  
 export const authenticate = (data, next) => {
     if (typeof window !== "undefined") {
         localStorage.setItem("jwt", JSON.stringify(data))
@@ -53,14 +55,11 @@ export const signout = next => {
 
 
 export const isAuthenticated = () => {
-
     if (typeof window == "undefined") {
-        return false
-
-    }
-
+        return false;
+      }
     if (localStorage.getItem("jwt")) {
-        return JSON.parse(localStorage.getItem("item"));
+        return JSON.parse(localStorage.getItem("jwt"));
 
     }
     else {

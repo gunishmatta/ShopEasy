@@ -19,7 +19,7 @@ mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => {
     console.log("DB CONNECTED");
@@ -37,9 +37,8 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 
-
 //PORT
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8001;
 
 //Starting a server
 app.listen(port, () => {

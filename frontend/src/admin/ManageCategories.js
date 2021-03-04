@@ -8,4 +8,4 @@ const ManageCategories = () =>
 </Base>
 }
 
-export const ManageCategories;
+export default ManageCategories;
