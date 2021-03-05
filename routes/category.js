@@ -4,7 +4,7 @@ const { removeCategory,updateCategory,getCategoryById,getAllCategory,getCategory
 const {isAdmin,isAuthenticated,isSignedIn} = require('../controllers/auth')
 const {getUserById} = require('../controllers/user')
 //params
-router.param("param",getUserById);
+router.param("userId",getUserById);
 router.param("categoryId",getCategoryById);
 
 //actual routes

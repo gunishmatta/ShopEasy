@@ -22,10 +22,10 @@ export default function Routes()
   <PrivateRoutes path='/user/dashboard' exact component={UserDashBoard} />
   <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
     
-  <AdminRoute path='/admin/create/category' exact component={AddCategory} />
+  <AdminRoute path='/admin/create/categories' exact component={AddCategory} />
   <AdminRoute path='/admin/categories' exact component={ManageCategories} />
 
-  <AdminRoute path='/admin/create/product' exact component={AddProduct} />
+  <AdminRoute path='/admin/create/products' exact component={AddProduct} />
 
 
     </Switch>
