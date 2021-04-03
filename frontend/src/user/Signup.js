@@ -22,7 +22,7 @@ const Signup = () => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password })
-      .then(data => {
+      .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error, success: false });
         } else {

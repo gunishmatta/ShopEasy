@@ -1,1 +1,1 @@
-export const backendAPI = process.env.REACT_APP_BACKEND
+export const backendAPI = "http://localhost:8001/api"
