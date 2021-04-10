@@ -146,7 +146,7 @@ const AddProduct = () => {
       <div className="form-group">
         <input
           onChange={handleChange("quantity")}
-          type="number"
+          type="text"
           className="form-control"
           placeholder="Quantity"
           value={stock}
