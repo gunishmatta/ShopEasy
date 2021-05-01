@@ -9,15 +9,20 @@ const ManageProducts = () => {
   const { user, token } = isAuthenticated();
 
   const preload = () => {
-    getProducts().then((data) => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        setProducts(data);
-      }
-    });
+    getProducts()
+      .then((data) => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setProducts(data);
+        }
+      })
+      .catch((error) => {
+        let err = { error };
+        console.log(err.error);
+        //do whatever you want with the err object
+      });
   };
-
   useEffect(() => {
     preload();
   }, []);

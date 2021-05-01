@@ -11,7 +11,7 @@ const AddProduct = () => {
     name: "",
     description: "",
     price: "",
-    stock: "",
+    quantity: "",
     photo: "",
     categories: [],
     category: "",
@@ -60,7 +60,7 @@ const AddProduct = () => {
           description: "",
           price: "",
           photo: "",
-          stock: "",
+          quantity: "",
           loading: false,
           createdProduct: data.name,
         });
@@ -146,7 +146,7 @@ const AddProduct = () => {
       <div className="form-group">
         <input
           onChange={handleChange("quantity")}
-          type="text"
+          type="number"
           className="form-control"
           placeholder="Quantity"
           value={stock}
